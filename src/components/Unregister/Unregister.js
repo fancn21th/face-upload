@@ -33,6 +33,7 @@ class UnregisterForm extends React.Component {
       isFieldTouched("username") && getFieldError("username");
     const passwordError =
       isFieldTouched("password") && getFieldError("password");
+
     return (
       <Form layout="inline" onSubmit={this.handleSubmit}>
         <Form.Item

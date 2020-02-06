@@ -17,10 +17,10 @@ function App() {
   return (
     <Tabs defaultActiveKey="1" onChange={callback}>
       <TabPane tab={FACE_REGISTER} key="1">
-        <Unregister />
+        <Uploader />
       </TabPane>
       <TabPane tab={FACE_CANCEL_REGISTER} key="2">
-        <Uploader />
+        <Unregister />
       </TabPane>
     </Tabs>
   );

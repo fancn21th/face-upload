@@ -1,6 +1,7 @@
 import React from "react";
 import { Upload, Icon, message } from "antd";
 import "./Uploader.css";
+import { ADD_TASK } from "../../config/endpoints";
 
 function getBase64(img, callback) {
   const reader = new FileReader();
@@ -30,6 +31,9 @@ class Uploader extends React.Component {
       this.setState({ loading: true });
       return;
     }
+    if (info.file.state === "error") {
+      message.error("Image failed to upload!");
+    }
     if (info.file.status === "done") {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, imageUrl =>
@@ -55,7 +59,7 @@ class Uploader extends React.Component {
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        action={ADD_TASK}
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >
