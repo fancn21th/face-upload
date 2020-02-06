@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Icon, Input, Button, message } from "antd";
-import "./Unregister.css";
+import "./Register.css";
 import { REMOVE_TASK } from "../../config/endpoints";
 
 class NormalLoginForm extends React.Component {
@@ -40,7 +40,7 @@ class NormalLoginForm extends React.Component {
             htmlType="submit"
             className="login-form-button"
           >
-            注销
+            注册
           </Button>
         </Form.Item>
       </Form>
@@ -48,7 +48,7 @@ class NormalLoginForm extends React.Component {
   }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: "unregister" })(
+const WrappedNormalLoginForm = Form.create({ name: "register" })(
   NormalLoginForm
 );
 

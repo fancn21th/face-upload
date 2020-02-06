@@ -31,6 +31,7 @@ class Uploader extends React.Component {
       this.setState({ loading: true });
       return;
     }
+    debugger;
     if (info.file.state === "error") {
       message.error("Image failed to upload!");
     }
