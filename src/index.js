@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "antd/dist/antd.css"; // 引入Antd样式
 import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
 
