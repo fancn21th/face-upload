@@ -41,13 +41,16 @@ class Uploader extends React.Component {
       return;
     }
     if (info.file.status === "done") {
-      // 0 成功
-      // 1 没有检测到人脸
-      // 2 人脸分辨率过小
-      // 3 上传的图片有误
       const {
         response: { code, result }
       } = info.file;
+      /*
+        code:
+        0 成功
+        1 没有检测到人脸
+        2 人脸分辨率过小
+        3 上传的图片有误
+      */
       const resMsg = codes[code];
       if (code === "0") {
         message.success(resMsg);
