@@ -16,10 +16,14 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
+        let formData = new FormData();
+        Object.keys(values).forEach(key => {
+          formData.append(key, values[key]);
+        });
         // console.log("Received values of form: ", values);
         let response = await fetch(SIGNUP_TASK, {
           method: "POST",
-          body: values
+          body: formData
         });
 
         /*
