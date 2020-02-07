@@ -1,7 +1,15 @@
 import React from "react";
 import { Form, Icon, Input, Button, message } from "antd";
 import "./Register.css";
-import { REMOVE_TASK } from "../../config/endpoints";
+import { SIGNUP_TASK } from "../../config/endpoints";
+
+const codes = [
+  "注册成功",
+  "已经注册",
+  "写入数据库有误",
+  "服务器有误",
+  "服务过期"
+];
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
@@ -9,13 +17,26 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
         // console.log("Received values of form: ", values);
-        let response = await fetch(REMOVE_TASK, {
+        let response = await fetch(SIGNUP_TASK, {
           method: "POST",
           body: values
         });
 
-        let result = await response.json();
-        message.success(result.code);
+        /*
+          返回状态码说明	
+          0 注册成功
+          1 已经注册
+          2 写入数据库有误
+          3 服务器有误
+          4 服务过期
+        */
+        const { code } = await response.json();
+        const resMsg = codes[code];
+        if (code === "0") {
+          message.success(resMsg);
+        } else {
+          message.error(resMsg);
+        }
       }
     });
   };

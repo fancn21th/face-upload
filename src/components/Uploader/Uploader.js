@@ -55,7 +55,7 @@ class Uploader extends React.Component {
         response: { code, result }
       } = info.file;
       /*
-        code:
+        返回状态码说明	
         0 成功
         1 没有检测到人脸
         2 人脸分辨率过小
@@ -76,7 +76,9 @@ class Uploader extends React.Component {
         //     loading: false
         //   })
         // );
-      } else message.error(resMsg);
+      } else {
+        message.error(resMsg);
+      }
     }
   };
 
