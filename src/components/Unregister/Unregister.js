@@ -3,6 +3,8 @@ import { Form, Icon, Input, Button, message } from "antd";
 import "./Unregister.css";
 import { REMOVE_TASK } from "../../config/endpoints";
 
+const codes = ["成功", "数据库操作有误", "服务器有误", "服务过期"];
+
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
@@ -14,8 +16,19 @@ class NormalLoginForm extends React.Component {
           body: values
         });
 
-        let result = await response.json();
-        message.success(result.code);
+        /*
+          0 成功
+          1 数据库操作有误
+          2 服务器有误
+          3 服务过期
+        */
+        const { code } = await response.json();
+        const resMsg = codes[code];
+        if (code === "0") {
+          message.success(resMsg);
+        } else {
+          message.error(resMsg);
+        }
       }
     });
   };
