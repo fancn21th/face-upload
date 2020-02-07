@@ -21,12 +21,14 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
+    const { name } = this.props;
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
           {getFieldDecorator("name", {
-            rules: [{ required: true, message: "请输入用户名" }]
+            rules: [{ required: true, message: "请输入用户名" }],
+            initialValue: name
           })(
             <Input
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}

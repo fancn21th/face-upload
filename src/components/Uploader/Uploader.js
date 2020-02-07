@@ -12,6 +12,10 @@ import { ADD_TASK } from "../../config/endpoints";
 //   reader.readAsDataURL(img);
 // }
 
+function getFileName(fileName) {
+  return fileName.split(".")[0];
+}
+
 function beforeUpload(file) {
   const isJpg = file.type === "image/jpeg";
   if (!isJpg) {
@@ -27,6 +31,12 @@ function beforeUpload(file) {
 const codes = ["成功", "没有检测到人脸", "人脸分辨率过小", "上传的图片有误"];
 
 class Uploader extends React.Component {
+  constructor(props) {
+    super(props);
+    const { onNameChange } = this.props;
+    this.onNameChange = onNameChange;
+  }
+
   state = {
     loading: false
   };
@@ -58,6 +68,7 @@ class Uploader extends React.Component {
           imageUrl: `data:image/jpeg;base64,${result}`,
           loading: false
         });
+        this.onNameChange(getFileName(info.file.name));
         // Get this url from response in real world.
         // getBase64(info.file.originFileObj, imageUrl =>
         //   this.setState({
